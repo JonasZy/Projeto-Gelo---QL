@@ -1,3 +1,17 @@
+"""
+Nome do arquivo: gelo.py
+Data de criação: 04/11/2025
+Autor: Jonas da Silva Freitas
+Matrícula: 01716338
+
+Descrição:
+Script de experimento com Q-Learning aplicado ao ambiente FrozenLake (exemplo didático).
+
+Funcionalidades:
+- Treinamento de agente via Q-Learning
+- Teste e geração de métricas e gráficos
+"""
+
 import gymnasium as gym # pyright: ignore[reportMissingImports]
 import numpy as np # pyright: ignore[reportMissingImports]
 import time

@@ -124,6 +124,36 @@ O script gera dois gráficos principais:
 - Melhorar visualizações em tempo real
 - Comparar diferentes hiperparâmetros
 
+## Entrega / Commit inicial
+
+Nome do repositório sugerido: Projeto-Gelo-01716338-Jonas-da-Silva-Freitas
+
+Comandos sugeridos (Windows PowerShell):
+```powershell
+git init
+git add .
+git commit -m "ADS-init: 01716338 ML"
+git branch -M main
+git remote add origin <URL_DO_REPO>
+git push -u origin main
+```
+
+Cabeçalho padrão em todos os arquivos (incluído nos scripts):
+```python
+"""
+Nome do arquivo: <ex.: train_model.py>
+Data de criação: 25/10/2025
+Autor: Jonas da Silva Freitas
+Matrícula: 01716338
+
+Descrição:
+<objetivo do arquivo>
+Funcionalidades:
+- <ponto 1>
+- <ponto 2>
+"""
+```
+
 ## Autor
 Projeto-Gelo
 Jonas da Silva Freitas

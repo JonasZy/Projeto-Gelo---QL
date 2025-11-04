@@ -12,17 +12,19 @@ Funcionalidades:
 - Garantia de reprodutibilidade
 """
 
+import os
 import random
 import numpy as np
-import gymnasium as gym
 
 def set_seed(seed: int) -> None:
     """
     Configura seeds para garantir reprodutibilidade.
-    
+
     Args:
         seed (int): Valor da seed
     """
+    os.environ['PYTHONHASHSEED'] = str(seed)
     random.seed(seed)
     np.random.seed(seed)
-    gym.utils.seeding.create_seed(seed)
+    # Nota: Para reprodutibilidade completa também é necessário setar a seed do ambiente
+    # ao criá-lo: env.reset(seed=seed)

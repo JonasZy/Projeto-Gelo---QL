@@ -21,9 +21,8 @@ import gymnasium as gym
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-import sys
 
-sys.path.append(str(Path(__file__).parent.parent))
+from gymnasium.spaces import Discrete
 
 from src.agents.qlearning import QLearningAgent
 from src.agents.sarsa import SarsaAgent

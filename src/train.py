@@ -20,10 +20,9 @@ import json
 import gymnasium as gym
 import numpy as np
 from datetime import datetime
-import sys
 from pathlib import Path
 
-sys.path.append(str(Path(__file__).parent.parent))
+from gymnasium.spaces import Discrete
 
 from src.agents.qlearning import QLearningAgent
 from src.agents.sarsa import SarsaAgent
@@ -48,22 +47,39 @@ def parse_args():
 def main():
     args = parse_args()
     set_seed(args.seed)
-    
+
     # Criar diretório de saída
     os.makedirs(args.out, exist_ok=True)
-    
+
     # Salvar configuração
     with open(os.path.join(args.out, 'config.json'), 'w') as f:
         json.dump(vars(args), f, indent=4)
-    
+
     # Inicializar ambiente
     env = gym.make(args.env)
-    
+
+    # Determinar tamanho do espaço de estados e ações (compatible with Discrete or Box)
+    if isinstance(env.observation_space, Discrete):
+        state_size = env.observation_space.n
+    else:
+        try:
+            state_size = int(np.prod(env.observation_space.shape))
+        except Exception:
+            raise ValueError('Unsupported observation space. Only Discrete or array spaces supported.')
+
+    if isinstance(env.action_space, Discrete):
+        action_size = env.action_space.n
+    else:
+        try:
+            action_size = int(np.prod(env.action_space.shape))
+        except Exception:
+            raise ValueError('Unsupported action space. Only Discrete or array spaces supported.')
+
     # Inicializar agente
     if args.algo == 'qlearning':
         agent = QLearningAgent(
-            state_size=env.observation_space.n,
-            action_size=env.action_space.n,
+            state_size=state_size,
+            action_size=action_size,
             alpha=args.alpha,
             gamma=args.gamma,
             epsilon_start=args.epsilon_start,
@@ -72,8 +88,8 @@ def main():
         )
     else:
         agent = SarsaAgent(
-            state_size=env.observation_space.n,
-            action_size=env.action_space.n,
+            state_size=state_size,
+            action_size=action_size,
             alpha=args.alpha,
             gamma=args.gamma,
             epsilon_start=args.epsilon_start,
