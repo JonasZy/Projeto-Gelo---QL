@@ -121,8 +121,6 @@ O script gera dois gráficos principais:
 - Melhorar visualizações em tempo real
 - Comparar diferentes hiperparâmetros
 
-## Entrega / Commit inicial
-
 Nome do repositório sugerido: Projeto-Gelo-01716338-Jonas-da-Silva-Freitas
 
 ## Autor
